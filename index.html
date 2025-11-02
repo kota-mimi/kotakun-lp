@@ -1174,17 +1174,19 @@
             });
         });
         
-        // 改良されたスワイプ対応
+        // 画像スワイプ対応（スライダーコンテナ全体をタッチ可能に）
         let touchStartX = 0;
         let touchEndX = 0;
         let touchStartY = 0;
         
-        slider.addEventListener('touchstart', (e) => {
+        const sliderContainer = document.querySelector('.slider-container');
+        
+        sliderContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
         });
         
-        slider.addEventListener('touchend', (e) => {
+        sliderContainer.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             const touchEndY = e.changedTouches[0].screenY;
             const diffX = touchStartX - touchEndX;
