@@ -1,0 +1,22 @@
+{
+  "name": "kotakun-lp",
+  "version": "1.0.0",
+  "description": "AIトレーナーこたくん - LINEで続く健康管理",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000 -o",
+    "build": "echo 'Static files ready for deployment'",
+    "start": "npx http-server -p 8080"
+  },
+  "keywords": [
+    "AI",
+    "health",
+    "LINE",
+    "trainer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
