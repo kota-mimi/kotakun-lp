@@ -117,6 +117,7 @@
             max-width: 400px;
             margin: 0 auto;
             overflow: hidden;
+            touch-action: pan-y;
         }
 
         .slider {
@@ -1097,11 +1098,19 @@
 
 
     <script>
-        // 真の無限ループスライダー（Instagram/TikTok風）
+        // 真の無限ループスライダー（Instagram/TikTok風）+ スワイプ機能
         const slider = document.querySelector('.slider');
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
         const totalSlides = slides.length;
+        const sliderContainer = document.querySelector('.slider-container');
+
+        // スワイプ用の変数
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        let currentX = 0;
+        let lastTranslate = 0;
         
         // 最初と最後のスライドを複製
         const firstClone = slides[0].cloneNode(true);
@@ -1174,25 +1183,108 @@
             });
         });
         
-        // スワイプ対応
+        // 高度なスワイプ対応（Instagram/TikTok風）
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartY = 0;
+        let isDragging = false;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationId = 0;
         
-        slider.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
+        // タッチ開始
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isDragging = true;
+            animationId = requestAnimationFrame(animate);
+            slider.style.transition = 'none';
         });
         
-        slider.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
+        // タッチ移動中
+        sliderContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
             
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = currentX - touchStartX;
+            const diffY = currentY - touchStartY;
+            
+            // 縦スクロールを優先するため、横移動が縦移動より大きい場合のみスワイプとして処理
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                e.preventDefault();
+                currentTranslate = prevTranslate + diffX;
+            }
+        });
+        
+        // タッチ終了
+        sliderContainer.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            cancelAnimationFrame(animationId);
+            
+            const diffX = touchStartX - e.changedTouches[0].clientX;
+            const threshold = sliderContainer.offsetWidth * 0.2; // 20%の移動で切り替え
+            
+            slider.style.transition = 'transform 0.3s ease-out';
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
                     moveToSlide(1); // 左スワイプ = 次へ
                 } else {
                     moveToSlide(-1); // 右スワイプ = 前へ
                 }
+            } else {
+                // 元の位置に戻る
+                updateSlide(true);
             }
+            
+            currentTranslate = 0;
+            prevTranslate = 0;
+        });
+        
+        // アニメーション関数
+        function animate() {
+            if (isDragging) {
+                const baseTranslate = -currentSlide * 100;
+                const dragOffset = (currentTranslate / sliderContainer.offsetWidth) * 100;
+                slider.style.transform = `translateX(${baseTranslate + dragOffset}%)`;
+                requestAnimationFrame(animate);
+            }
+        }
+        
+        // マウス対応（デスクトップ用）
+        sliderContainer.addEventListener('mousedown', (e) => {
+            touchStartX = e.clientX;
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        sliderContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            currentTranslate = prevTranslate + (e.clientX - touchStartX);
+        });
+        
+        sliderContainer.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const diffX = touchStartX - e.clientX;
+            const threshold = sliderContainer.offsetWidth * 0.2;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    moveToSlide(1);
+                } else {
+                    moveToSlide(-1);
+                }
+            } else {
+                updateSlide(true);
+            }
+            
+            currentTranslate = 0;
+            prevTranslate = 0;
         });
 
         
