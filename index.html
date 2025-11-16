@@ -1131,11 +1131,18 @@
     </footer>
 
     <script>
-        // Simple Carousel with Scroll Detection
+        // Infinite Carousel with Clone Slides
         const wrapper = document.getElementById('carouselWrapper');
         const dotsContainer = document.getElementById('carouselDots');
-        const slides = wrapper.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
+        const originalSlides = wrapper.querySelectorAll('.carousel-slide');
+        const totalSlides = originalSlides.length;
+
+        // Clone first and last slides for infinite effect
+        const firstClone = originalSlides[0].cloneNode(true);
+        const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
+        
+        wrapper.appendChild(firstClone);
+        wrapper.insertBefore(lastClone, originalSlides[0]);
 
         // Create dots
         for (let i = 0; i < totalSlides; i++) {
@@ -1146,13 +1153,42 @@
         }
 
         const dots = document.querySelectorAll('.carousel-dot');
+        const slideWidth = originalSlides[0].offsetWidth + 20;
+        
+        // Set initial position (skip the cloned last slide at beginning)
+        wrapper.scrollLeft = slideWidth;
+        
+        let isTransitioning = false;
 
-        // Update active dot based on scroll position
+        // Handle infinite scroll
         wrapper.addEventListener('scroll', () => {
-            const scrollLeft = wrapper.scrollLeft;
-            const slideWidth = slides[0].offsetWidth + 20; // width + gap
-            const currentIndex = Math.round(scrollLeft / slideWidth);
+            if (isTransitioning) return;
             
+            const scrollLeft = wrapper.scrollLeft;
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            
+            // Calculate current slide index
+            let currentIndex = Math.round(scrollLeft / slideWidth) - 1;
+            
+            // Handle infinite loop transitions
+            if (scrollLeft <= 0) {
+                // At cloned last slide, jump to real last slide
+                isTransitioning = true;
+                wrapper.scrollLeft = maxScroll - slideWidth;
+                currentIndex = totalSlides - 1;
+                setTimeout(() => { isTransitioning = false; }, 50);
+            } else if (scrollLeft >= maxScroll) {
+                // At cloned first slide, jump to real first slide
+                isTransitioning = true;
+                wrapper.scrollLeft = slideWidth;
+                currentIndex = 0;
+                setTimeout(() => { isTransitioning = false; }, 50);
+            }
+            
+            // Ensure index is within bounds
+            currentIndex = Math.max(0, Math.min(totalSlides - 1, currentIndex));
+            
+            // Update dots
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
