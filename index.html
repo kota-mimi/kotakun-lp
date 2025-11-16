@@ -1168,6 +1168,16 @@
             const dot = document.createElement('div');
             dot.classList.add('carousel-dot');
             if (i === 0) dot.classList.add('active');
+            
+            // Add click functionality
+            dot.addEventListener('click', () => {
+                const targetPosition = (i + 1) * slideWidth;
+                wrapper.scrollTo({
+                    left: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+            
             dotsContainer.appendChild(dot);
         }
 
