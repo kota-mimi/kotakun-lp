@@ -44,13 +44,6 @@
             width: 100%;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background: #fff;
-            -webkit-font-smoothing: antialiased;
-        }
 
         .container {
             max-width: 600px;
@@ -828,6 +821,90 @@
             opacity: 0.9;
         }
 
+        /* Campaign Banner */
+        .campaign-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, #FF6B35 0%, #FFA500 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 16px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: campaignPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes campaignPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+            }
+        }
+
+        .campaign-text {
+            font-size: 0.85rem;
+            opacity: 0.95;
+        }
+
+        .campaign-highlight {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adjust body padding for fixed banner */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 60px;
+        }
+
+        /* Campaign section before hero */
+        .campaign-section {
+            background: linear-gradient(135deg, #FF6B35 0%, #FFA500 100%);
+            color: white;
+            text-align: center;
+            padding: 20px 16px;
+            margin-top: -60px;
+        }
+
+        .campaign-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .campaign-section p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            margin-bottom: 0;
+        }
+
+        .campaign-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            color: #FF6B35;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin: 0 4px;
+            text-shadow: none;
+        }
+
         /* Footer */
         footer {
             background: var(--light-grey);
@@ -839,14 +916,31 @@
     </style>
 </head>
 <body>
+    <!-- Campaign Banner (Fixed) -->
+    <div class="campaign-banner">
+        <div class="campaign-highlight">🎉 期間限定：3日間全機能無料 🎉</div>
+        <div class="campaign-text">今なら制限なしで使い放題！</div>
+    </div>
+
+    <!-- Campaign Section -->
+    <section class="campaign-section">
+        <div class="container">
+            <h3>🚀 特別キャンペーン開催中！</h3>
+            <p>
+                <span class="campaign-badge">3日間限定</span>
+                プレミアム機能を<strong>完全無料</strong>で体験！
+            </p>
+        </div>
+    </section>
+
     <!-- Hero -->
     <section class="hero">
         <div class="hero-image-wrapper">
             <img src="https://i.imgur.com/tde5nLh.png" alt="LINEで続く健康習慣" class="hero-image">
         </div>
         <div class="container">
-            <a href="https://lin.ee/BCYVfcD" class="cta-button">無料でLINE友だち追加</a>
-            <p class="hero-note">アプリ不要。30秒で始められます</p>
+            <a href="https://lin.ee/BCYVfcD" class="cta-button">🎉 3日間無料で体験開始</a>
+            <p class="hero-note">期間限定！制限なしで全機能使い放題</p>
         </div>
     </section>
 
@@ -1054,7 +1148,7 @@
     <!-- CTA Mid -->
     <section class="cta-mid-section">
         <div class="container">
-            <a href="https://lin.ee/BCYVfcD" class="cta-button">無料でLINE友だち追加</a>
+            <a href="https://lin.ee/BCYVfcD" class="cta-button">🎉 3日間無料で体験開始</a>
         </div>
     </section>
 
@@ -1104,7 +1198,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        はい、基本機能は無料でご利用いただけます。ただし、無料プランには1日あたりの利用回数制限があります。
+                        はい、基本機能は無料でご利用いただけます。さらに今なら<strong>3日間限定で全機能が制限なしで無料</strong>でお試しいただけます！
                     </div>
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
@@ -1135,10 +1229,10 @@
             <h2>今すぐ始めよう</h2>
             <p>
                 LINEだから続く。AIがいるから迷わない。<br>
-                まずは無料で、試してみませんか？
+                <strong>3日間限定</strong>でプレミアム機能を無料体験！
             </p>
-            <a href="https://lin.ee/BCYVfcD" class="cta-button">無料でLINE友だち追加</a>
-            <p class="final-note">たった30秒で始められます</p>
+            <a href="https://lin.ee/BCYVfcD" class="cta-button">🎉 3日間無料で体験開始</a>
+            <p class="final-note">期間限定！今なら制限なしで使い放題</p>
         </div>
     </section>
 
