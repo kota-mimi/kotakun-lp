@@ -1135,109 +1135,6 @@
         </div>
     </section>
 
-    <!-- Calorie Calculator -->
-    <section class="calorie-calculator-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-eyebrow">体験してみよう</div>
-                <h2 class="section-title">あなたの目標カロリーを計算</h2>
-                <p class="section-subtitle">性別・年齢・身長・体重・活動レベルから、あなたに最適な摂取カロリーを算出します。</p>
-            </div>
-            
-            <div class="calculator-wrapper">
-                <form class="calculator-form" id="calorieForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>性別</label>
-                            <div class="radio-group">
-                                <label class="radio-label">
-                                    <input type="radio" name="gender" value="male" checked>
-                                    <span>男性</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="gender" value="female">
-                                    <span>女性</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="age">年齢</label>
-                            <input type="number" id="age" min="15" max="100" placeholder="25" required>
-                            <span class="unit">歳</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="height">身長</label>
-                            <input type="number" id="height" min="100" max="250" placeholder="170" required>
-                            <span class="unit">cm</span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="weight">体重</label>
-                            <input type="number" id="weight" min="30" max="200" placeholder="65" required>
-                            <span class="unit">kg</span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="activity">活動レベル</label>
-                        <select id="activity" required>
-                            <option value="">選択してください</option>
-                            <option value="1.2">ほとんど運動しない（デスクワーク中心）</option>
-                            <option value="1.375">軽い運動（週1-3回）</option>
-                            <option value="1.55">中程度の運動（週3-5回）</option>
-                            <option value="1.725">激しい運動（週6-7回）</option>
-                            <option value="1.9">非常に激しい運動（1日2回など）</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="goal">目標</label>
-                        <select id="goal" required>
-                            <option value="">選択してください</option>
-                            <option value="-500">体重を減らす（-0.5kg/週）</option>
-                            <option value="-250">ゆるやかに減量（-0.25kg/週）</option>
-                            <option value="0">現在の体重を維持</option>
-                            <option value="250">ゆるやかに増量（+0.25kg/週）</option>
-                            <option value="500">体重を増やす（+0.5kg/週）</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="calc-button">📊 カロリーを計算する</button>
-                </form>
-                
-                <div class="result-wrapper" id="resultWrapper" style="display: none;">
-                    <h3>あなたの目標カロリー</h3>
-                    <div class="result-grid">
-                        <div class="result-item">
-                            <div class="result-label">基礎代謝</div>
-                            <div class="result-value" id="bmrResult">-</div>
-                            <div class="result-unit">kcal/日</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-label">総消費カロリー</div>
-                            <div class="result-value" id="tdeeResult">-</div>
-                            <div class="result-unit">kcal/日</div>
-                        </div>
-                        <div class="result-item main-result">
-                            <div class="result-label">目標摂取カロリー</div>
-                            <div class="result-value" id="goalResult">-</div>
-                            <div class="result-unit">kcal/日</div>
-                        </div>
-                    </div>
-                    <div class="result-note">
-                        この計算結果を参考に、こたくんで実際の食事管理を始めてみませんか？
-                    </div>
-                    <a href="https://lin.ee/BCYVfcD" class="cta-button">🎉 こたくんで管理を開始</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Comparison -->
     <section class="comparison-section">
         <div class="container">
@@ -1447,6 +1344,109 @@
                         <h3>今すぐ記録を開始</h3>
                         <p>写真やテキストを送るだけで健康管理スタート。</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calorie Calculator -->
+    <section class="calorie-calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">体験してみよう</div>
+                <h2 class="section-title">あなたの目標カロリーを計算</h2>
+                <p class="section-subtitle">性別・年齢・身長・体重・活動レベルから、あなたに最適な摂取カロリーを算出します。</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <form class="calculator-form" id="calorieForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>性別</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    <span>男性</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="female">
+                                    <span>女性</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">年齢</label>
+                            <input type="number" id="age" min="15" max="100" placeholder="25" required>
+                            <span class="unit">歳</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">身長</label>
+                            <input type="number" id="height" min="100" max="250" placeholder="170" required>
+                            <span class="unit">cm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight">体重</label>
+                            <input type="number" id="weight" min="30" max="200" placeholder="65" required>
+                            <span class="unit">kg</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activity">活動レベル</label>
+                        <select id="activity" required>
+                            <option value="">選択してください</option>
+                            <option value="1.2">ほとんど運動しない（デスクワーク中心）</option>
+                            <option value="1.375">軽い運動（週1-3回）</option>
+                            <option value="1.55">中程度の運動（週3-5回）</option>
+                            <option value="1.725">激しい運動（週6-7回）</option>
+                            <option value="1.9">非常に激しい運動（1日2回など）</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal">目標</label>
+                        <select id="goal" required>
+                            <option value="">選択してください</option>
+                            <option value="-500">体重を減らす（-0.5kg/週）</option>
+                            <option value="-250">ゆるやかに減量（-0.25kg/週）</option>
+                            <option value="0">現在の体重を維持</option>
+                            <option value="250">ゆるやかに増量（+0.25kg/週）</option>
+                            <option value="500">体重を増やす（+0.5kg/週）</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="calc-button">カロリーを計算する</button>
+                </form>
+                
+                <div class="result-wrapper" id="resultWrapper" style="display: none;">
+                    <h3>あなたの目標カロリー</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">基礎代謝</div>
+                            <div class="result-value" id="bmrResult">-</div>
+                            <div class="result-unit">kcal/日</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">総消費カロリー</div>
+                            <div class="result-value" id="tdeeResult">-</div>
+                            <div class="result-unit">kcal/日</div>
+                        </div>
+                        <div class="result-item main-result">
+                            <div class="result-label">目標摂取カロリー</div>
+                            <div class="result-value" id="goalResult">-</div>
+                            <div class="result-unit">kcal/日</div>
+                        </div>
+                    </div>
+                    <div class="result-note">
+                        この計算結果を参考に、こたくんで実際の食事管理を始めてみませんか？
+                    </div>
+                    <a href="https://lin.ee/BCYVfcD" class="cta-button">こたくんで管理を開始</a>
                 </div>
             </div>
         </div>
