@@ -865,6 +865,216 @@
             text-shadow: none;
         }
 
+        /* Calorie Calculator */
+        .calorie-calculator-section {
+            background: white;
+            padding: 80px 16px;
+        }
+
+        .calculator-wrapper {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(30, 144, 255, 0.15);
+            border-radius: 20px;
+            padding: 32px 28px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .calculator-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .calculator-form {
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e5e5ea;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+            background: white;
+        }
+
+        .unit {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: var(--grey-text);
+            pointer-events: none;
+            margin-top: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            accent-color: var(--primary-blue);
+        }
+
+        .calc-button {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0066CC 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.35);
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .calc-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.45);
+        }
+
+        .calc-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.35);
+        }
+
+        .result-wrapper {
+            margin-top: 32px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .result-wrapper.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-wrapper h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 24px;
+        }
+
+        .result-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .result-item {
+            background: rgba(30, 144, 255, 0.05);
+            padding: 20px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(30, 144, 255, 0.1);
+        }
+
+        .result-item.main-result {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0066CC 100%);
+            color: white;
+            border: none;
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .result-unit {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .result-note {
+            font-size: 0.9rem;
+            color: var(--grey-text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .calculator-wrapper {
+                padding: 24px 20px;
+            }
+            
+            .radio-group {
+                justify-content: center;
+            }
+        }
+
         /* Footer */
         footer {
             background: var(--light-grey);
@@ -922,6 +1132,109 @@
                 LINEで使える健康管理サービス。<br>
                 面倒な記録も、悩みも、AIがサポート。
             </p>
+        </div>
+    </section>
+
+    <!-- Calorie Calculator -->
+    <section class="calorie-calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">体験してみよう</div>
+                <h2 class="section-title">あなたの目標カロリーを計算</h2>
+                <p class="section-subtitle">性別・年齢・身長・体重・活動レベルから、あなたに最適な摂取カロリーを算出します。</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <form class="calculator-form" id="calorieForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>性別</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    <span>男性</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="female">
+                                    <span>女性</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">年齢</label>
+                            <input type="number" id="age" min="15" max="100" placeholder="25" required>
+                            <span class="unit">歳</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">身長</label>
+                            <input type="number" id="height" min="100" max="250" placeholder="170" required>
+                            <span class="unit">cm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight">体重</label>
+                            <input type="number" id="weight" min="30" max="200" placeholder="65" required>
+                            <span class="unit">kg</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activity">活動レベル</label>
+                        <select id="activity" required>
+                            <option value="">選択してください</option>
+                            <option value="1.2">ほとんど運動しない（デスクワーク中心）</option>
+                            <option value="1.375">軽い運動（週1-3回）</option>
+                            <option value="1.55">中程度の運動（週3-5回）</option>
+                            <option value="1.725">激しい運動（週6-7回）</option>
+                            <option value="1.9">非常に激しい運動（1日2回など）</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal">目標</label>
+                        <select id="goal" required>
+                            <option value="">選択してください</option>
+                            <option value="-500">体重を減らす（-0.5kg/週）</option>
+                            <option value="-250">ゆるやかに減量（-0.25kg/週）</option>
+                            <option value="0">現在の体重を維持</option>
+                            <option value="250">ゆるやかに増量（+0.25kg/週）</option>
+                            <option value="500">体重を増やす（+0.5kg/週）</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="calc-button">📊 カロリーを計算する</button>
+                </form>
+                
+                <div class="result-wrapper" id="resultWrapper" style="display: none;">
+                    <h3>あなたの目標カロリー</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">基礎代謝</div>
+                            <div class="result-value" id="bmrResult">-</div>
+                            <div class="result-unit">kcal/日</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">総消費カロリー</div>
+                            <div class="result-value" id="tdeeResult">-</div>
+                            <div class="result-unit">kcal/日</div>
+                        </div>
+                        <div class="result-item main-result">
+                            <div class="result-label">目標摂取カロリー</div>
+                            <div class="result-value" id="goalResult">-</div>
+                            <div class="result-unit">kcal/日</div>
+                        </div>
+                    </div>
+                    <div class="result-note">
+                        この計算結果を参考に、こたくんで実際の食事管理を始めてみませんか？
+                    </div>
+                    <a href="https://lin.ee/BCYVfcD" class="cta-button">🎉 こたくんで管理を開始</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1306,11 +1619,58 @@
             });
         }, observerOptions);
 
-        // Observe all animatable elements
+        // Calorie Calculator Logic
+        const calorieForm = document.getElementById('calorieForm');
+        const resultWrapper = document.getElementById('resultWrapper');
+        
+        calorieForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('age').value);
+            const height = parseInt(document.getElementById('height').value);
+            const weight = parseInt(document.getElementById('weight').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            const goal = parseInt(document.getElementById('goal').value);
+            
+            // Calculate BMR using Harris-Benedict Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            } else {
+                bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            }
+            
+            // Calculate TDEE (Total Daily Energy Expenditure)
+            const tdee = bmr * activity;
+            
+            // Calculate goal calories
+            const goalCalories = tdee + goal;
+            
+            // Display results
+            document.getElementById('bmrResult').textContent = Math.round(bmr);
+            document.getElementById('tdeeResult').textContent = Math.round(tdee);
+            document.getElementById('goalResult').textContent = Math.round(goalCalories);
+            
+            // Show result with animation
+            resultWrapper.style.display = 'block';
+            setTimeout(() => {
+                resultWrapper.classList.add('show');
+            }, 100);
+            
+            // Scroll to results
+            resultWrapper.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        });
+
+        // Observe all animatable elements including calculator
         const animatableElements = document.querySelectorAll(
             '.problem-text, .comparison-wrapper, .carousel-container, ' +
             '.conversation-category, .why-item, .step-card, .faq-item, ' +
-            '.cta-mid-section, .final-cta'
+            '.cta-mid-section, .final-cta, .calculator-wrapper'
         );
 
         animatableElements.forEach(element => {
